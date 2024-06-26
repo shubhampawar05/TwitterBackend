@@ -1,5 +1,5 @@
-import notificationModel from "../models/notification.model";
-import { catchAsync } from "../middlewares/errorHandler";
+import notificationModel from "../models/notification.model.js";
+import { catchAsync } from "../middlewares/errorHandler.js";
 const getNotifications = async (req, res) => {
   const userId = req.user._id;
 

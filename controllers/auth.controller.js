@@ -86,14 +86,19 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  res.cookie("jwt", "", { maxAge: 0 });
+  res.clearCookie("jwt", {
+    sameSite: "none",
+    httpOnly:true,
+    secure: true,
+    path: "/",
+  });
   res.status(200).json({ message: "Logged out successfully" });
 };
 const getMe = async (req, res) => {
-  const user = await userModel.findById(req.user._id).select("-password");
+  const user = await userModel.findById(req?.user?._id).select("-password");
   res.status(200).json({
-    user
-  })
+    user,
+  });
 };
 
 const authController = {

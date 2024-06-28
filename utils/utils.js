@@ -6,7 +6,7 @@ export const generateTokenAndSetCookie = (userId, res) => {
 		expiresIn: "15d",
 	}
 ); 
-	console.log("token form cookies function",token);
+	// console.log("token form cookies function",token);
 	res.cookie("jwt", token, {
 		maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in milliseconds
 		// httpOnly: true, // Uncomment this if you want to prevent client-side JS access to the cookie

@@ -2,6 +2,8 @@ import userModel from "../models/user.model.js";
 import notificationModel from "../models/notification.model.js";
 import { catchAsync } from "../middlewares/errorHandler.js";
 import bcrypt from "bcrypt";
+// import bcrypt from "bcryptjs";
+import { v2 as cloudinary } from "cloudinary";
 
 const profile = async (req, res) => {
   const { userName } = req.params;

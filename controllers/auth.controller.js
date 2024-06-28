@@ -95,10 +95,8 @@ const logout = async (req, res) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 const getMe = async (req, res) => {
-  const user = await userModel.findById(req?.user?._id).select("-password");
-  res.status(200).json({
-    user,
-  });
+  const user = await userModel.findById(req.user._id).select("-password");
+  res.status(200).json(user);
 };
 
 const authController = {

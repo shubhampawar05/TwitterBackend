@@ -25,7 +25,7 @@ const PORT = process.env.Port || 10000;
 app.use(cookieParser());
 
 const corsOption = {
-  origin: ["http://localhost:5173"],
+  origin: ["http://localhost:5173","http://localhost:10000"],
   credentials: true,
 };
 

@@ -10,9 +10,10 @@ export const catchAsync = (fn) => {
   };
   
 export  const errorHandler = (err, req, res, next) => {
-    console.log("Common error handler",err);
+    console.log("Common error handler",err,err.message);
     // Log errors to a file
     res.json({
+      err,
       success: false,
       message: "Something went wrong, please try again after sometime",
     });

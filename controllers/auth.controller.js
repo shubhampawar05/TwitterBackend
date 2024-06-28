@@ -4,7 +4,7 @@ import { generateTokenAndSetCookie } from "../utils/utils.js";
 import { catchAsync } from "../middlewares/errorHandler.js";
 
 const signup = async (req, res) => {
-  const { fullname, username, email, password } = req.body;
+  const { fullName, username, email, password } = req.body;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ error: "Invalid email format" });
@@ -21,7 +21,7 @@ const signup = async (req, res) => {
   if (emailNameExist) {
     return res.status(400).json({ error: "email is  aready taken" });
   }
-  if (!fullname) {
+  if (!fullName) {
     return res.status(400).json({ error: "name is required" });
   }
   if (!username) {
@@ -32,7 +32,7 @@ const signup = async (req, res) => {
   const hassPassword = await bcrypt.hash(password, 10);
 
   const newUser = new userModel({
-    fullname,
+    fullName,
     username,
     email,
     password: hassPassword,
@@ -41,7 +41,7 @@ const signup = async (req, res) => {
     await newUser.save();
     res.status(201).json({
       _id: newUser._id,
-      fullname: newUser.fullname,
+      fullName: newUser.fullName,
       username: newUser.username,
       email: newUser.email,
       followers: newUser.followers,
@@ -63,7 +63,7 @@ const login = async (req, res) => {
     return res.status(400).json({ error: "Email and Password is required" });
   }
   const user = await userModel.findOne({ email });
-  const isValidPassword = await bcrypt.compareSync(
+  const isValidPassword =  bcrypt.compareSync(
     password,
     user?.password || ""
   );
@@ -74,7 +74,7 @@ const login = async (req, res) => {
   generateTokenAndSetCookie(user._id, res);
   res.status(200).json({
     _id: user._id,
-    fullname: user.fullname,
+    fullName: user.fullName,
     username: user.username,
     email: user.email,
     followers: user.followers,

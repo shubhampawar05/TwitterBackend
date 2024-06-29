@@ -25,7 +25,7 @@ const PORT = process.env.Port || 10000;
 app.use(cookieParser());
 
 const corsOption = {
-  origin: ["https://twitter-fullstack-pi.vercel.app/"],
+  origin: ["https://twitter-fullstack-pi.vercel.app"],
   credentials: true,
 };
 
